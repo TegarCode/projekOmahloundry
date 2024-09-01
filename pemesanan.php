@@ -41,7 +41,7 @@
     <!-- End Header -->
     <?php
     $error_No_Identitas = $error_Nama = $error_Alamat = $error_No_Hp = $error_Tgl_Ambil = $error_jenislayanan = $error_ambil = $error_jemput = "";
-    $No_Identitas = $Nama = $Alamat = $No_Hp = $Tgl_Ambil = $jenislayanan = $ambil = $jemput = "";
+    $No_Identitas = $Nama = $Alamat = $No_Hp = $Tgl_Ambil = $jenislayanan = $ambil = $jemput = $Kode_Promo = $error_Kode_Promo = "";
 
     function cek_input($data)
     {
@@ -186,6 +186,15 @@
                             <span class="text-danger"><?php echo $error_jenislayanan; ?></span>
                         </div>
                     </div>
+
+                    <div class="mb-3 row">
+                        <label for="Kode_Promo" class="col-sm-3 col-form-label">Kode Promo</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="Kode_Promo" id="Kode_Promo" class="form-control" placeholder="Masukkan Kode Promo Jika Ada" value="<?php echo $Kode_Promo; ?>">
+                            <span class="text-danger"><?php echo $error_Kode_Promo; ?></span>
+                        </div>
+                    </div>
+
 
 
                     <div class="mb-3 row">
