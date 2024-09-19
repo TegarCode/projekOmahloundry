@@ -1,6 +1,6 @@
 <?php
 include 'koneksi.php';
-$query = "SELECT * FROM kategori";
+$query = "SELECT * FROM promo";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -144,9 +144,13 @@ $result = mysqli_query($conn, $query);
                         <i class="fas fa-chart-area" aria-hidden="true"></i>
                         Proses Transaksi
                     </a>
-                    <a href="vDetail_Transaksi.php">
-                        <i class="fas fa-calculator" aria-hidden="true"></i>
-                        Detail Transaksi
+                    <a href="vKategori.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Kategori
+                    </a>
+                    <a href="vBerita.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Berita
                     </a>
                     <a href="vPelanggan.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
@@ -156,13 +160,9 @@ $result = mysqli_query($conn, $query);
                         <i class="far fa-calendar-check" aria-hidden="true"></i>
                         Data Detail
                     </a>
-                    <a href="vKategori.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Kategori
-                    </a>
-                    <a href="vBerita.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Berita
+                    <a href="vDetail_Transaksi.php">
+                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                        Detail Transaksi
                     </a>
                     <a href="vPromo.php">
                         <i class="fas fa-calculator" aria-hidden="true"></i>
@@ -175,14 +175,15 @@ $result = mysqli_query($conn, $query);
                 </div>
             </aside>
         </div>
+
         <div id="layoutSidenav_content" style="margin-left: 50px;">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Data Kategori</h1>
+                    <h1 class="mt-4">Data Promo</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Data Kategori</li>
-                        <li class="breadcrumb-item"><a href="vTambah_Kategori.php">Tambah Data</a></li>
+                        <li class="breadcrumb-item active">Data Promo</li>
+                        <li class="breadcrumb-item"><a href="vTambah_promo.php">Tambah Data</a></li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-body">
@@ -190,10 +191,12 @@ $result = mysqli_query($conn, $query);
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Nama Kategori</th>
-                                            <th>Harga</th>
-                                            <th>Satuan Berat</th>
-                                            <th>Foto</th>
+                                            <th>Kode Promo</th>
+                                            <th>Deskripsi</th>
+                                            <th>Diskon</th>
+                                            <th>Valid</th>
+                                            <th>tanggal mulai</th>
+                                            <th>tanggal selesai</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -201,13 +204,15 @@ $result = mysqli_query($conn, $query);
                                         <?php
                                         while ($row = mysqli_fetch_assoc($result)) {
                                             echo "<tr>";
-                                            echo "<td>" . $row['kategori'] . "</td>";
-                                            echo "<td>" . $row['harga'] . "</td>";
-                                            echo "<td>" . $row['satuan_berat'] . "</td>";
-                                            echo "<td><img src='./assets/kategori/" . $row['foto'] . "' alt='Foto' width='150' height='150'></td>";
+                                            echo "<td>" . $row['kode_promo'] . "</td>";
+                                            echo "<td>" . $row['deskripsi'] . "</td>";
+                                            echo "<td>" . $row['diskon'] . "</td>";
+                                            echo "<td>" . $row['valid'] . "</td>";
+                                            echo "<td>" . $row['tanggal_mulai'] . "</td>";
+                                            echo "<td>" . $row['tanggal_selesai'] . "</td>";
                                             echo "<td>";
-                                            echo "<a href='hapusKategori.php?id_kategori=" . $row["id_kategori"] . "' class='btn btn-sm btn-danger' style='margin-right: 10px;'><i class='fas fa-trash'></i> Hapus</a>";
-                                            echo "<a href='vUbah_Kategori.php?id_kategori=" . $row["id_kategori"] . "' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i> Ubah</a>";
+                                            echo "<a href='hapusPromo.php?id=" . $row["id"] . "' class='btn btn-sm btn-danger' style='margin-right: 10px;'><i class='fas fa-trash'></i> Hapus</a>";
+                                            echo "<a href='vUbah_promo.php?id=" . $row["id"] . "' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i> Ubah</a>";
                                             echo "</td>";
                                             echo "</tr>";
                                         }

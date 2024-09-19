@@ -1,23 +1,51 @@
 <?php
 include 'koneksi.php';
-$query = "SELECT * FROM kategori";
-$result = mysqli_query($conn, $query);
+
+if (!$conn) {
+    die("Koneksi ke database gagal: " . mysqli_connect_error());
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $kode_promo = $_POST['kode_promo'];
+    $deskripsi_promo = $_POST['deskripsi_promo'];
+    $diskon = $_POST['diskon'];
+    $tanggal_mulai = $_POST['tanggal_mulai'];
+    $tanggal_selesai = $_POST['tanggal_selesai'];
+
+    $query_insert = "INSERT INTO promo (kode_promo, deskripsi, diskon, tanggal_mulai, tanggal_selesai) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $query_insert);
+
+    if ($stmt === false) {
+        die("Error saat mempersiapkan query SQL: " . mysqli_error($conn));
+    }
+
+    mysqli_stmt_bind_param($stmt, "sssss", $kode_promo, $deskripsi_promo, $diskon, $tanggal_mulai, $tanggal_selesai);
+
+    if (mysqli_stmt_execute($stmt)) {
+        header("Location: vPromo.php");
+        exit();
+    } else {
+        echo "Gagal menambahkan data promo. Error: " . mysqli_error($conn);
+    }
+
+    mysqli_stmt_close($stmt);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Data Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Promo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.8.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.8.0/dist/js/bootstrap.min.js" crossorigin="anonymous">
+    </script>
 </head>
 
 <style>
@@ -96,14 +124,6 @@ $result = mysqli_query($conn, $query);
         padding: 10px;
         border-radius: 50%;
     }
-
-    .table td {
-        white-space: nowrap;
-        max-width: 200px;
-        /* Atur lebar maksimum untuk teks */
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 </style>
 
 <body class="sb-nav-fixed">
@@ -134,6 +154,7 @@ $result = mysqli_query($conn, $query);
                     <img src="./assets/img/pic1.png" alt="Logo" style="width: 50%; margin-left: 30px; margin-top: 20px;">
                     <h3 style="padding-top: 0px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Laundry Admin</h3>
                 </div>
+                <br>
                 <div class="master">
                     <h5> Menu </h5>
                     <a href="dashboard.php">
@@ -144,17 +165,13 @@ $result = mysqli_query($conn, $query);
                         <i class="fas fa-chart-area" aria-hidden="true"></i>
                         Proses Transaksi
                     </a>
-                    <a href="vDetail_Transaksi.php">
+                    <a href="vPromo.php">
                         <i class="fas fa-calculator" aria-hidden="true"></i>
-                        Detail Transaksi
+                        Promo
                     </a>
-                    <a href="vPelanggan.php">
+                    <a href="vAdmin.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
-                        Pelanggan
-                    </a>
-                    <a href="vDetail.php">
-                        <i class="far fa-calendar-check" aria-hidden="true"></i>
-                        Data Detail
+                        Admin
                     </a>
                     <a href="vKategori.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
@@ -164,13 +181,17 @@ $result = mysqli_query($conn, $query);
                         <i class="far fa-address-card" aria-hidden="true"></i>
                         Berita
                     </a>
-                    <a href="vPromo.php">
-                        <i class="fas fa-calculator" aria-hidden="true"></i>
-                        Promo
-                    </a>
-                    <a href="vAdmin.php">
+                    <a href="vPelanggan.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
-                        Admin
+                        Pelanggan
+                    </a>
+                    <a href="vDetail.php">
+                        <i class="far fa-calendar-check" aria-hidden="true"></i>
+                        Data Detail
+                    </a>
+                    <a href="vDetail_Transaksi.php">
+                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                        Detail Transaksi
                     </a>
                 </div>
             </aside>
@@ -178,43 +199,39 @@ $result = mysqli_query($conn, $query);
         <div id="layoutSidenav_content" style="margin-left: 50px;">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Data Kategori</h1>
+                    <h1 class="mt-4">Tambah Promo</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Data Kategori</li>
-                        <li class="breadcrumb-item"><a href="vTambah_Kategori.php">Tambah Data</a></li>
+                        <li class="breadcrumb-item"><a href="vPromo.php">Data Promo</a></li>
+                        <li class="breadcrumb-item active">Tambah Promo</li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama Kategori</th>
-                                            <th>Harga</th>
-                                            <th>Satuan Berat</th>
-                                            <th>Foto</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row['kategori'] . "</td>";
-                                            echo "<td>" . $row['harga'] . "</td>";
-                                            echo "<td>" . $row['satuan_berat'] . "</td>";
-                                            echo "<td><img src='./assets/kategori/" . $row['foto'] . "' alt='Foto' width='150' height='150'></td>";
-                                            echo "<td>";
-                                            echo "<a href='hapusKategori.php?id_kategori=" . $row["id_kategori"] . "' class='btn btn-sm btn-danger' style='margin-right: 10px;'><i class='fas fa-trash'></i> Hapus</a>";
-                                            echo "<a href='vUbah_Kategori.php?id_kategori=" . $row["id_kategori"] . "' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i> Ubah</a>";
-                                            echo "</td>";
-                                            echo "</tr>";
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <form method="POST" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="kode_promo" class="form-label">Kode Promo</label>
+                                    <input type="text" class="form-control" id="kode_promo" name="kode_promo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="deskripsi_promo" class="form-label">Deskripsi Promo</label>
+                                    <input type="text" class="form-control" id="deskripsi_promo" name="deskripsi_promo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="diskon" class="form-label">Diskon</label>
+                                    <input type="text" class="form-control" id="diskon" name="diskon">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                                    <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tanggal_selesai" class="form-label">Tanggal Selesai</label>
+                                    <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <a href="vPromo.php" class="btn btn-secondary">Batal</a>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -224,9 +241,6 @@ $result = mysqli_query($conn, $query);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
 </body>
 
 </html>

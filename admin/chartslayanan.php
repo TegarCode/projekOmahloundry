@@ -168,6 +168,10 @@ $jumlahPesanan = array_values($data);
                         <i class="fas fa-calculator" aria-hidden="true"></i>
                         Detail Transaksi
                     </a>
+                    <a href="vPromo.php">
+                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                        Promo
+                    </a>
                     <a href="vAdmin.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
                         Admin

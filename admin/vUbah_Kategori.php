@@ -183,6 +183,10 @@ if (isset($_GET['id_kategori'])) {
                         <i class="fas fa-chart-area" aria-hidden="true"></i>
                         Proses Transaksi
                     </a>
+                    <a href="vPromo.php">
+                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                        Promo
+                    </a>
                     <a href="vAdmin.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
                         Admin

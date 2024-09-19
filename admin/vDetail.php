@@ -162,6 +162,10 @@ $result3 = mysqli_query($conn, $query3);
                         <i class="far fa-address-card" aria-hidden="true"></i>
                         Berita
                     </a>
+                    <a href="vPromo.php">
+                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                        Promo
+                    </a>
                     <a href="vAdmin.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
                         Admin
