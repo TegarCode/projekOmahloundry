@@ -1,9 +1,3 @@
-<?php
-include 'koneksi.php';
-$query = "SELECT * FROM review";
-$result = mysqli_query($conn, $query);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -442,133 +436,107 @@ $result = mysqli_query($conn, $query);
 <!-- End Galeri Section -->
 
 <!-- ======= Testimony Section ======= -->
+<style>
+  .member {
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  .member .pic {
+    flex-shrink: 0;
+    margin-right: 20px;
+  }
+
+  .member .pic img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    /* Membuat gambar menjadi lingkaran */
+  }
+
+  .member-info h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .member-info span {
+    font-size: 16px;
+    font-style: italic;
+    color: #888;
+  }
+
+  .member-info p {
+    font-size: 18px;
+  }
+</style>
 <section id="testimoni" class="team section-bg">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
       <h2>Testimoni</h2>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-    <style>
-        /* Styles for testimonial section */
-        #testimonial_area {
-            padding: 1% 0;
-        }
-        .box-area {
-            padding: 30px;
-            background: #fcfcfc;
-            color: #000;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            margin: 40px 0;
-            position: relative;
-            display: block;
-        }
-        .box-area h5 {
-            font-size: 16px;
-            font-weight: 700;
-            color: #f17122;
-            margin-top: 30px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .box-area span {
-            color: #262626;
-            display: block;
-            font-size: 13px;
-            margin-bottom: 10px;
-            font-weight: 400;
-        }
-        .box-area .content {
-            color: #262626;
-        }
-        .read-more, .read-less {
-            color: #f17122;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-        .revieww {
-            background-color: #ffffff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            width: 100%;
-            max-width: 1430px;
-            margin: 0 auto;
-        }
-        @media only screen and (max-width: 767px) {
-            .box-area {
-                text-align: center;
-            }
-        }
-    </style>
-
-    <div class="container-fluid pt-5 revieww">
-      <section id="testimonial_area" class="section_padding">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="testmonial_slider_area text-center owl-carousel">
-                <?php if (mysqli_num_rows($result) > 0): ?>
-                  <?php while ($review = mysqli_fetch_object($result)): ?>
-                    <div class="box-area">
-                      <h5><?= htmlspecialchars($review->nama, ENT_QUOTES, 'UTF-8') ?></h5>
-                      <div class="rating">
-                        <?php for ($i = 1; $i <= 5; $i++): ?>
-                          <i class='bx <?= $i <= $review->rating ? 'bxs-star' : 'bx-star' ?>' style='color: #ffcd00;'></i>
-                        <?php endfor; ?>
-                      </div>
-                      <p class="content">
-                        <span class="short-text"><?= htmlspecialchars(substr($review->isi_review, 0, 100), ENT_QUOTES, 'UTF-8') ?></span>
-                        <span class="long-text" style="display:none;"><?= htmlspecialchars($review->isi_review, ENT_QUOTES, 'UTF-8') ?></span>
-                        <?php if (strlen($review->isi_review) > 100): ?>
-                          <a href="#" class="read-more">Read more</a>
-                          <a href="#" class="read-less" style="display:none;">Read less</a>
-                        <?php endif; ?>
-                      </p>
-                    </div>
-                  <?php endwhile; ?>
-                <?php else: ?>
-                  <p style="text-align: center; color: #000000;">Jadilah yang pertama mengisi survey!</p>
-                <?php endif; ?>
-              </div>
-              <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
-              <script>
-                  $(".testmonial_slider_area").owlCarousel({
-                      autoplay: true,
-                      slideSpeed: 1000,
-                      items: 3,
-                      loop: true,
-                      nav: true,
-                      dots: true,
-                      margin: 30,
-                      responsive: {
-                          320: { items: 1 },
-                          600: { items: 2 },
-                          1000: { items: 3 }
-                      }
-                  });
-
-                  $(document).on('click', '.read-more', function(e) {
-                      e.preventDefault();
-                      $(this).siblings('.short-text').hide();
-                      $(this).siblings('.long-text').show();
-                      $(this).hide();
-                      $(this).siblings('.read-less').show();
-                  });
-
-                  $(document).on('click', '.read-less', function(e) {
-                      e.preventDefault();
-                      $(this).siblings('.short-text').show();
-                      $(this).siblings('.long-text').hide();
-                      $(this).hide();
-                      $(this).siblings('.read-more').show();
-                  });
-              </script>
-            </div>
+    <div class="row">
+      <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+        <div class="member d-flex align-items-start">
+          <div class="pic">
+            <img src="assets/img/customer/tim1.jpg" class="img-fluid" alt="" />
+          </div>
+          <div class="member-info">
+            <h4>Eri Cahyadi</h4>
+            <span>Wali Kota Surabaya</span>
+            <p>
+              Kerja bagus! Semua sudah modern dan kita bisa dapat notifikasi via sms kalau laundry
+              sudah selesai jadi lebih cepat dan nyaman.
+            </p>
           </div>
         </div>
-      </section>
+      </div>
+
+      <div class="col-lg-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="member d-flex align-items-start">
+          <div class="pic">
+            <img src="assets/img/customer/tim2.jpg" class="img-fluid" alt="" />
+          </div>
+          <div class="member-info">
+            <h4>Khofifah Indar Parawansa</h4>
+            <span>Gubernur Jawa Timur</span>
+            <p>
+              Kerja bagus! Semua sudah modern dan kita bisa dapat notifikasi via sms kalau laundry dan jahit sudah selesai jadi lebih cepat dan nyaman
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="member d-flex align-items-start">
+          <div class="pic">
+            <img src="assets/img/customer/tim3.jpg" class="img-fluid" alt="" />
+          </div>
+          <div class="member-info">
+            <h4>Tri Risma Harini</h4>
+            <span>Menteri Sosial Republik Indonesia</span>
+            <p>
+              Puas banget nyuci jas disini. Dapet diskon 30k dari harga normal 70k. selesai dalam 2 hari
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="400">
+        <div class="member d-flex align-items-start">
+          <div class="pic">
+            <img src="assets/img/customer/team-4.jpg" class="img-fluid" alt="" />
+          </div>
+          <div class="member-info">
+            <h4>Amanda Jepson</h4>
+            <span>Mahasiswa</span>
+            <p>
+              Laundry disini beda sama laundry lainnya, harganya terjangkau tapi kualitasnya tetap oke.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
