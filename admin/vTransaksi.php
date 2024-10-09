@@ -156,6 +156,10 @@ $result = mysqli_query($conn, $query);
                         <i class="fas fa-calculator" aria-hidden="true"></i>
                         Promo
                     </a>
+                    <a href="vReview.php">
+                        <i class="far fa-commenting" aria-hidden="true"></i>
+                        Review
+                    </a>
                     <a href="vAdmin.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
                         Admin

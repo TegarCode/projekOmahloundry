@@ -26,7 +26,7 @@ $jumlahPesanan = array_values($data);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>USA LAUNDRY</title>
+    <title>Grafik Penjualan</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -148,13 +148,9 @@ $jumlahPesanan = array_values($data);
                         <i class="fas fa-chart-area" aria-hidden="true"></i>
                         Proses Transaksi
                     </a>
-                    <a href="vKategori.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Kategori
-                    </a>
-                    <a href="vBerita.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Berita
+                    <a href="vDetail_Transaksi.php">
+                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                        Detail Transaksi
                     </a>
                     <a href="vPelanggan.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
@@ -164,13 +160,21 @@ $jumlahPesanan = array_values($data);
                         <i class="far fa-calendar-check" aria-hidden="true"></i>
                         Data Detail
                     </a>
-                    <a href="vDetail_Transaksi.php">
-                        <i class="fas fa-calculator" aria-hidden="true"></i>
-                        Detail Transaksi
+                    <a href="vKategori.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Kategori
+                    </a>
+                    <a href="vBerita.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Berita
                     </a>
                     <a href="vPromo.php">
                         <i class="fas fa-calculator" aria-hidden="true"></i>
                         Promo
+                    </a>
+                    <a href="vReview.php">
+                        <i class="far fa-commenting" aria-hidden="true"></i>
+                        Review
                     </a>
                     <a href="vAdmin.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
@@ -182,10 +186,10 @@ $jumlahPesanan = array_values($data);
         <div id="layoutSidenav_content" style="margin-left: 50px;">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Chart</h1>
+                    <h1 class="mt-4">Grafik Penjualan</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Chart</li>
+                        <li class="breadcrumb-item active">Grafik Penjualan</li>
                     </ol>
 
                     <div class="card mb-4">

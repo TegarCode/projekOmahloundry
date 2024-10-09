@@ -13,7 +13,7 @@ $result = mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Data Customer</title>
+    <title>Data Pelanggan</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="css/styles.css" rel="stylesheet" />
@@ -136,13 +136,9 @@ $result = mysqli_query($conn, $query);
                         <i class="fas fa-chart-area" aria-hidden="true"></i>
                         Proses Transaksi
                     </a>
-                    <a href="vKategori.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Kategori
-                    </a>
-                    <a href="vBerita.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Berita
+                    <a href="vDetail_Transaksi.php">
+                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                        Detail Transaksi
                     </a>
                     <a href="vPelanggan.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
@@ -152,13 +148,21 @@ $result = mysqli_query($conn, $query);
                         <i class="far fa-calendar-check" aria-hidden="true"></i>
                         Data Detail
                     </a>
-                    <a href="vDetail_Transaksi.php">
-                        <i class="fas fa-calculator" aria-hidden="true"></i>
-                        Detail Transaksi
+                    <a href="vKategori.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Kategori
+                    </a>
+                    <a href="vBerita.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Berita
                     </a>
                     <a href="vPromo.php">
                         <i class="fas fa-calculator" aria-hidden="true"></i>
                         Promo
+                    </a>
+                    <a href="vReview.php">
+                        <i class="far fa-commenting" aria-hidden="true"></i>
+                        Review
                     </a>
                     <a href="vAdmin.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
@@ -171,10 +175,10 @@ $result = mysqli_query($conn, $query);
         <div id="layoutSidenav_content" style="margin-left: 50px;">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Data Customer</h1>
+                    <h1 class="mt-4">Data Pelanggan</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Data Customer</li>
+                        <li class="breadcrumb-item active">Data Pelanggan</li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-body">

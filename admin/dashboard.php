@@ -10,7 +10,7 @@ include 'koneksi.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>USA LAUNDRY</title>
+    <title>Admin Omah Laundry Prapen</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="css/styles.css" rel="stylesheet" />
@@ -154,6 +154,10 @@ include 'koneksi.php';
                         <i class="fas fa-calculator" aria-hidden="true"></i>
                         Promo
                     </a>
+                    <a href="vReview.php">
+                        <i class="far fa-commenting" aria-hidden="true"></i>
+                        Review
+                    </a>
                     <a href="vAdmin.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
                         Admin
@@ -172,7 +176,7 @@ include 'koneksi.php';
                     <div class="row">
                         <div class="col-xl-6 col-md-10">
                             <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">Data Customer</div>
+                                <div class="card-body">Data Pelanggan</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" href="vDetail_Pelanggan.php">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -181,7 +185,7 @@ include 'koneksi.php';
                         </div>
                         <div class="col-xl-6 col-md-10">
                             <div class="card bg-danger text-white mb-4">
-                                <div class="card-body">Jenis Layanan</div>
+                                <div class="card-body">Grafik Penjualan</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
                                     <a class="small text-white stretched-link" href="chartslayanan.php">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>

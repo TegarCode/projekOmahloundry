@@ -72,15 +72,16 @@ mysqli_close($conn);
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubah Admin</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.8.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Ubah Promo</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.8.0/dist/js/bootstrap.min.js" crossorigin="anonymous">
-    </script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
 <style>
@@ -199,17 +200,9 @@ mysqli_close($conn);
                         <i class="fas fa-chart-area" aria-hidden="true"></i>
                         Proses Transaksi
                     </a>
-                    <a href="vPromo.php">
+                    <a href="vDetail_Transaksi.php">
                         <i class="fas fa-calculator" aria-hidden="true"></i>
-                        Promo
-                    </a>
-                    <a href="vAdmin.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Admin
-                    </a>
-                    <a href="vBerita.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Berita
+                        Detail Transaksi
                     </a>
                     <a href="vPelanggan.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
@@ -219,9 +212,25 @@ mysqli_close($conn);
                         <i class="far fa-calendar-check" aria-hidden="true"></i>
                         Data Detail
                     </a>
-                    <a href="vDetail_Transaksi.php">
+                    <a href="vKategori.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Kategori
+                    </a>
+                    <a href="vBerita.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Berita
+                    </a>
+                    <a href="vPromo.php">
                         <i class="fas fa-calculator" aria-hidden="true"></i>
-                        Detail Transaksi
+                        Promo
+                    </a>
+                    <a href="vReview.php">
+                        <i class="far fa-commenting" aria-hidden="true"></i>
+                        Review
+                    </a>
+                    <a href="vAdmin.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Admin
                     </a>
                 </div>
             </aside>
@@ -229,11 +238,11 @@ mysqli_close($conn);
         <div id="layoutSidenav_content" style="margin-left: 50px;">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Ubah promo</h1>
+                    <h1 class="mt-4">Ubah Promo</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="vPromo.php">promo</a></li>
-                        <li class="breadcrumb-item active">Ubah promo</li>
+                        <li class="breadcrumb-item"><a href="vPromo.php">Promo</a></li>
+                        <li class="breadcrumb-item active">Ubah Promo</li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-body">

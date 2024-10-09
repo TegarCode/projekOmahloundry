@@ -36,15 +36,16 @@ if (isset($_GET['id_pelanggan'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubah Customer</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.8.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Ubah Data Pelanggan</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.8.0/dist/js/bootstrap.min.js" crossorigin="anonymous">
-    </script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
 <style>
@@ -153,7 +154,6 @@ if (isset($_GET['id_pelanggan'])) {
                     <img src="./assets/img/pic1.png" alt="Logo" style="width: 50%; margin-left: 30px; margin-top: 20px;">
                     <h3 style="padding-top: 0px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Laundry Admin</h3>
                 </div>
-                <br>
                 <div class="master">
                     <h5> Menu </h5>
                     <a href="dashboard.php">
@@ -164,21 +164,9 @@ if (isset($_GET['id_pelanggan'])) {
                         <i class="fas fa-chart-area" aria-hidden="true"></i>
                         Proses Transaksi
                     </a>
-                    <a href="vPromo.php">
+                    <a href="vDetail_Transaksi.php">
                         <i class="fas fa-calculator" aria-hidden="true"></i>
-                        Promo
-                    </a>
-                    <a href="vAdmin.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Admin
-                    </a>
-                    <a href="vKategori.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Kategori
-                    </a>
-                    <a href="vBerita.php">
-                        <i class="far fa-address-card" aria-hidden="true"></i>
-                        Berita
+                        Detail Transaksi
                     </a>
                     <a href="vPelanggan.php">
                         <i class="far fa-address-card" aria-hidden="true"></i>
@@ -188,9 +176,25 @@ if (isset($_GET['id_pelanggan'])) {
                         <i class="far fa-calendar-check" aria-hidden="true"></i>
                         Data Detail
                     </a>
-                    <a href="vDetail_Transaksi.php">
+                    <a href="vKategori.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Kategori
+                    </a>
+                    <a href="vBerita.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Berita
+                    </a>
+                    <a href="vPromo.php">
                         <i class="fas fa-calculator" aria-hidden="true"></i>
-                        Detail Transaksi
+                        Promo
+                    </a>
+                    <a href="vReview.php">
+                        <i class="far fa-commenting" aria-hidden="true"></i>
+                        Review
+                    </a>
+                    <a href="vAdmin.php">
+                        <i class="far fa-address-card" aria-hidden="true"></i>
+                        Admin
                     </a>
                 </div>
             </aside>
@@ -198,11 +202,11 @@ if (isset($_GET['id_pelanggan'])) {
         <div id="layoutSidenav_content" style="margin-left: 50px;">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Ubah Customer</h1>
+                    <h1 class="mt-4">Ubah Data Pelanggan</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="datacustomer.php">Data Customer</a></li>
-                        <li class="breadcrumb-item active">Ubah Customer</li>
+                        <li class="breadcrumb-item"><a href="datacustomer.php">Data Pelanggan</a></li>
+                        <li class="breadcrumb-item active">Ubah Data Pelanggan</li>
                     </ol>
                     <div class="card mb-4">
                         <div class="card-body">

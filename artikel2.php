@@ -8,107 +8,48 @@ $result2 = mysqli_query($conn, $query2);
 <html lang="">
 
 <head>
-    <title>OMAH LAUNDRY PRAPEN</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
-
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
-
-    <style>
-    /* Style untuk gelombang */
-    .waves-container {
-      position: absolute;
-      width: 100%;
-      height: auto;
-      bottom: 0;
-      z-index: -1;
-    }
-
-    .waves {
-      width: 100%;
-      height: auto;
-    }
-
-    #navbar .nav-link.active {
-      color: #DC6B19 !important;
-    }
-
-    .whatsapp-icon,
-        .instagram-icon {
-        font-size: 35px;
-    }
-
-    .whatsapp-icon {
-        color: green;
-    }
-
-    .instagram-icon {
-        color: #405DE6;
-    }
-
-    .social-link {
-        margin-left: 10px;
-        margin-top: 15px;
-    }
-  </style>
+    <title>Laundry Prapen - Berita</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 
-<body>
-    <!-- Gelombang -->
-    <div class="waves-container">
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
-            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-            <use xlink:href="#gentle-wave" x="48" y="7" fill="white" />
-        </g>
-        </svg>
+<body id="top">
+    <div class="bgded overlay light" style="background-image:url('images/demo/backgrounds/01.png');">
+        <div class="wrapper row1" style="background-color: rgba(255, 197, 126, 0.9); color: #fff;">
+            <header id="header" class="hoc clear">
+                <div id="logo" class="fl_left">
+                    <h1><a href="index.php">Laundry Prapen</a></h1>
+                </div>
+                <nav id="mainav" class="fl_right">
+                    <ul class="clear">
+                        <li><a href="index.php">Beranda</a></li>
+                        <li><a href="index.php#tentang">Tentang</a></li>
+                        <li><a href="index.php#excess">Keunggulan</a></li>
+                        <li><a href="index.php#gallery">Galeri</a></li>
+                        <li><a href="index.php#testimoni">Testimoni</a></li>
+                        <li><a class="drop active" href="#">Berita</a>
+                            <ul style="background-color: rgba(255, 197, 126, 0.9); color: #fff;">
+                                <li><a href="index.php">Beranda</a></li>
+                                <li><a href="artikel.php">Berita</a></li>
+                                <li><a href="sosmed.php">Sosial Media</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="index.php#lokasi">Lokasi</a></li>
+                        <li><a class="drop" href="#">Pesan</a>
+                            <ul style="background-color: rgba(255, 197, 126, 0.9); color: #fff;">
+                                <li><a href="customer.php">Pesan</a></li>
+                                <li><a href="lacak.php">Lacak</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
     </div>
 
-    <body>
-        <!-- ======= Header ======= -->
-        <header id="header" class="fixed-top" style="background-color: #FFBB70;">
-                <div class="container d-flex align-items-center ">
-                    <h1 class="logo me-auto"><a href="customer.php" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: #fff;">OMAH LAUNDRY PRAPEN</a></h1>
-                    <nav id="navbar" class="navbar">
-                        <ul>
-                            <li class="dropdown">
-                                <a href="#"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="index.php">Beranda</a></li>
-                                    <li><a href="artikel.php">Berita</a></li>
-                                    <li><a href="sosmed.php">Sosial Media</a></li>
-                            </li>
-                        </ul>
-                        </ul>
-                        <i class="bi bi-list mobile-nav-toggle"></i>
-                    </nav>
-                    <!-- .navbar -->
-                </div>
-            </header>
-            <!-- End Header -->
-            <br><br><br><br>
-</html>
-<!-- End Hero -->
-
-<section id="berita" class="berita">
-    <div class="container" data-aos="fade-up">
-        <div class="section-title">
-            <h2>Berita</h2>
-        </div>
+    <div id="pageintro" class="hoc clear">
         <div class="flexslider basicslider" style="background-color: rgba(255, 197, 126, 0.9); color: #fff;  height: 300px; max-width: 100%; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);">
             <ul class="slides">
                 <li>
