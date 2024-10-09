@@ -256,6 +256,11 @@ $result = mysqli_query($conn, $query);
                                     <td><?= $row["jenisPemesanan"] ?></td>
                                 </tr>
                                 <tr>
+                                <th>Diskon</th>
+                                <td><?= $row["diskon"] ?>%</td>
+                            </tr>
+
+                                <tr>
                                     <th>Status</th>
                                     <td>
                                         <?php
@@ -321,6 +326,13 @@ $result = mysqli_query($conn, $query);
                                     <th>Pelayanan</th>
                                     <td><?= $row["jenisPemesanan"] ?></td>
                                 </tr>
+                                <tr>
+                                    <th>Diskon</th>
+                                    <td><?= $row["diskon"] ?>%</td>
+                                </tr>
+
+
+
                                 <tr>
                                     <th>Status Sekarang</th>
                                     <td>
