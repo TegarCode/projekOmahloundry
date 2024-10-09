@@ -11,16 +11,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $diskon = $_POST['diskon'];
     $tanggal_mulai = $_POST['tanggal_mulai'];
     $tanggal_selesai = $_POST['tanggal_selesai'];
+    $valid = 1; // nilai valid default 1
 
-    $query_insert = "INSERT INTO promo (kode_promo, deskripsi, diskon, tanggal_mulai, tanggal_selesai) VALUES (?, ?, ?, ?, ?)";
+    // Query untuk menambahkan data promo
+    $query_insert = "INSERT INTO promo (kode_promo, deskripsi, diskon, valid, tanggal_mulai, tanggal_selesai) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query_insert);
 
     if ($stmt === false) {
         die("Error saat mempersiapkan query SQL: " . mysqli_error($conn));
     }
 
-    mysqli_stmt_bind_param($stmt, "sssss", $kode_promo, $deskripsi_promo, $diskon, $tanggal_mulai, $tanggal_selesai);
+    // Pastikan jumlah tipe data sesuai dengan jumlah variabel yang di-bind
+    mysqli_stmt_bind_param($stmt, "sssiss", $kode_promo, $deskripsi_promo, $diskon, $valid, $tanggal_mulai, $tanggal_selesai);
 
+    // Eksekusi query
     if (mysqli_stmt_execute($stmt)) {
         header("Location: vPromo.php");
         exit();
@@ -28,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Gagal menambahkan data promo. Error: " . mysqli_error($conn);
     }
 
+    // Tutup statement
     mysqli_stmt_close($stmt);
 }
 ?>
