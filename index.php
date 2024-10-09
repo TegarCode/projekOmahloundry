@@ -1,3 +1,14 @@
+<?php
+include 'koneksi.php';
+$sql = "SELECT nama, isi_review, rating FROM review"; 
+$result = $conn->query($sql);
+if ($result === false) {
+  echo "Query error: " . $conn->error;  // Untuk debugging
+} elseif ($result->num_rows === 0) {
+  echo "Tidak ada testimoni yang ditemukan.";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -435,112 +446,102 @@
 </section>
 <!-- End Galeri Section -->
 
-<!-- ======= Testimony Section ======= -->
-<style>
-  .member {
-    display: flex;
-    margin-bottom: 30px;
-  }
+<!-- ======= Review Section ======= -->
 
-  .member .pic {
-    flex-shrink: 0;
-    margin-right: 20px;
+<title>Testimoni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+  .testimonial-box {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
   }
-
-  .member .pic img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    /* Membuat gambar menjadi lingkaran */
-  }
-
-  .member-info h4 {
-    font-size: 24px;
+  .testimonial-box h5 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #f17122;
     margin-bottom: 10px;
   }
-
-  .member-info span {
-    font-size: 16px;
-    font-style: italic;
-    color: #888;
-  }
-
-  .member-info p {
+  .testimonial-box .rating i {
     font-size: 18px;
   }
+  .testimonial-box p {
+    font-size: 16px;
+    color: #333;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
 </style>
-<section id="testimoni" class="team section-bg">
+
+<!-- Load jQuery dan OwlCarousel -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+<!-- Owl Carousel Initialization -->
+<script>
+  $(document).ready(function(){
+    $(".testimonial-carousel").owlCarousel({
+      autoplay: true,
+      autoplayTimeout: 5000,
+      autoplayHoverPause: true,
+      items: 3,   // Menampilkan 3 testimoni per tampilan
+      loop: true, // Membuat loop pada carousel
+      margin: 30, // Jarak antar elemen carousel
+      nav: true,  // Menampilkan navigasi
+      dots: true, // Menampilkan dots untuk navigasi
+      responsive: {
+        0: {
+          items: 1  // Pada layar kecil (mobile), hanya tampil 1 testimoni
+        },
+        600: {
+          items: 2  // Pada layar sedang, tampil 2 testimoni
+        },
+        1000: {
+          items: 3  // Pada layar besar, tampil 3 testimoni
+        }
+      }
+    });
+  });
+</script>
+
+
+<section id="testimoni" class="kontak">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
       <h2>Testimoni</h2>
     </div>
 
-    <div class="row">
-      <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
-        <div class="member d-flex align-items-start">
-          <div class="pic">
-            <img src="assets/img/customer/tim1.jpg" class="img-fluid" alt="" />
+    <div class="testimonial-carousel owl-carousel owl-theme">
+      <!-- Menampilkan testimoni dari database -->
+      <?php if ($result->num_rows > 0): ?>
+        <?php while ($review = $result->fetch_object()): ?>
+          <div class="testimonial-box shadow p-4 bg-white rounded">
+            <h5 class="text-primary"><?= htmlspecialchars($review->nama, ENT_QUOTES, 'UTF-8') ?></h5>
+            <div class="rating mb-2">
+              <!-- Menampilkan bintang sesuai rating -->
+              <?php for ($i = 1; $i <= 5; $i++): ?>
+                <i class="<?= $i <= $review->rating ? 'fas fa-star' : 'far fa-star' ?>" style="color: #ffcd00;"></i>
+              <?php endfor; ?>
+            </div>
+            <p class="text-muted"><?= htmlspecialchars($review->isi_review, ENT_QUOTES, 'UTF-8') ?></p>
           </div>
-          <div class="member-info">
-            <h4>Eri Cahyadi</h4>
-            <span>Wali Kota Surabaya</span>
-            <p>
-              Kerja bagus! Semua sudah modern dan kita bisa dapat notifikasi via sms kalau laundry
-              sudah selesai jadi lebih cepat dan nyaman.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
-        <div class="member d-flex align-items-start">
-          <div class="pic">
-            <img src="assets/img/customer/tim2.jpg" class="img-fluid" alt="" />
-          </div>
-          <div class="member-info">
-            <h4>Khofifah Indar Parawansa</h4>
-            <span>Gubernur Jawa Timur</span>
-            <p>
-              Kerja bagus! Semua sudah modern dan kita bisa dapat notifikasi via sms kalau laundry dan jahit sudah selesai jadi lebih cepat dan nyaman
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="300">
-        <div class="member d-flex align-items-start">
-          <div class="pic">
-            <img src="assets/img/customer/tim3.jpg" class="img-fluid" alt="" />
-          </div>
-          <div class="member-info">
-            <h4>Tri Risma Harini</h4>
-            <span>Menteri Sosial Republik Indonesia</span>
-            <p>
-              Puas banget nyuci jas disini. Dapet diskon 30k dari harga normal 70k. selesai dalam 2 hari
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="400">
-        <div class="member d-flex align-items-start">
-          <div class="pic">
-            <img src="assets/img/customer/team-4.jpg" class="img-fluid" alt="" />
-          </div>
-          <div class="member-info">
-            <h4>Amanda Jepson</h4>
-            <span>Mahasiswa</span>
-            <p>
-              Laundry disini beda sama laundry lainnya, harganya terjangkau tapi kualitasnya tetap oke.
-            </p>
-          </div>
-        </div>
-      </div>
+        <?php endwhile; ?>
+      <?php else: ?>
+        <p style="text-align: center; color: #000000;">Belum ada testimoni yang tersedia.</p>
+      <?php endif; ?>
     </div>
   </div>
 </section>
-<!-- End Testimony Section -->
+
+
+<!-- End review Section -->
+
 
 <!-- ======= Location Section ======= -->
 <section id="lokasi" class="kontak">
@@ -586,7 +587,7 @@
 <footer id="footer">
   <div class="container footer-bottom clearfix">
     <div class="copyright">
-      &copy; Copyright <strong><span>HANDAL</span></strong>. 2024
+      &copy; Copyright <strong><span>Omah Laundry</span></strong>. 2024
     </div>
   </div>
 </footer>
