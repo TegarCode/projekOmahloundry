@@ -82,7 +82,6 @@ if ($result === false) {
             <li class="dropdown">
               <a href="#"><span>Berita</span> <i class="bi bi-chevron-down"></i></a>
               <ul>
-                <li><a href="index.php">Beranda</a></li>
                 <li><a href="artikel.php">Berita</a></li>
                 <li><a href="sosmed.php">Sosial Media</a></li>
               </ul>
@@ -499,7 +498,7 @@ if ($result === false) {
 </script>
 
 
-<section id="testimoni" class="kontak">
+<section id="testimoni" class="testimoni">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
       <h2>Testimoni</h2>

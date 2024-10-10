@@ -1,14 +1,21 @@
 <?php
 include 'koneksi.php';
-$query2 = "SELECT * FROM berita";
-$result2 = mysqli_query($conn, $query2);
-
+$sql = "SELECT narasumber, judul_berita, isi_berita, foto FROM berita"; 
+$result = $conn->query($sql);
+if ($result === false) {
+  echo "Query error: " . $conn->error;  // Untuk debugging
+} elseif ($result->num_rows === 0) {
+  echo "Tidak ada berita yang ditemukan.";
+}
 ?>
+
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 
 <head>
     <title>OMAH LAUNDRY PRAPEN</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
@@ -22,217 +29,183 @@ $result2 = mysqli_query($conn, $query2);
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Load jQuery dan OwlCarousel -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
     <style>
-    /* Style untuk gelombang */
-    .waves-container {
-      position: absolute;
-      width: 100%;
-      height: auto;
-      bottom: 0;
-      z-index: -1;
-    }
+        /* Style untuk gelombang */
+        .waves-container {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            bottom: 0;
+            z-index: -1;
+        }
 
-    .waves {
-      width: 100%;
-      height: auto;
-    }
+        .waves {
+            width: 100%;
+            height: auto;
+        }
 
-    #navbar .nav-link.active {
-      color: #DC6B19 !important;
-    }
+        #navbar .nav-link.active {
+            color: #DC6B19 !important;
+        }
 
-    .whatsapp-icon,
-        .instagram-icon {
-        font-size: 35px;
-    }
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    .whatsapp-icon {
-        color: green;
-    }
+        .berita-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            overflow: hidden;
+            width: 100%;
+        }
 
-    .instagram-icon {
-        color: #405DE6;
-    }
+        .berita-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
 
-    .social-link {
-        margin-left: 10px;
-        margin-top: 15px;
-    }
-  </style>
+        .berita-box h6 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #f17122;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .berita-box p {
+            font-size: 16px;
+            color: #333;
+            text-align: justify;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .berita-box {
+                margin: 10px 5px;
+            }
+
+            .berita-box img {
+                height: 200px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
     <!-- Gelombang -->
     <div class="waves-container">
         <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
-            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-            <use xlink:href="#gentle-wave" x="48" y="7" fill="white" />
-        </g>
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="white" />
+            </g>
         </svg>
     </div>
 
-    <body>
-        <!-- ======= Header ======= -->
-        <header id="header" class="fixed-top" style="background-color: #FFBB70;">
-                <div class="container d-flex align-items-center ">
-                    <h1 class="logo me-auto"><a href="customer.php" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: #fff;">OMAH LAUNDRY PRAPEN</a></h1>
-                    <nav id="navbar" class="navbar">
+    <!-- Header -->
+    <header id="header" class="fixed-top" style="background-color: #FFBB70;">
+        <div class="container d-flex align-items-center ">
+            <h1 class="logo me-auto"><a href="customer.php" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: #fff;">OMAH LAUNDRY PRAPEN</a></h1>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li class="dropdown">
+                        <a href="#"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li class="dropdown">
-                                <a href="#"><span>Home</span> <i class="bi bi-chevron-down"></i></a>
-                                <ul>
-                                    <li><a href="index.php">Beranda</a></li>
-                                    <li><a href="artikel.php">Berita</a></li>
-                                    <li><a href="sosmed.php">Sosial Media</a></li>
-                            </li>
+                            <li><a href="index.php">Beranda</a></li>
+                            <li><a href="artikel.php">Berita</a></li>
+                            <li><a href="sosmed.php">Sosial Media</a></li>
                         </ul>
-                        </ul>
-                        <i class="bi bi-list mobile-nav-toggle"></i>
-                    </nav>
-                    <!-- .navbar -->
-                </div>
-            </header>
-            <!-- End Header -->
-            <br><br><br><br>
-</html>
-<!-- End Hero -->
-
-<section id="berita" class="berita">
-    <div class="container" data-aos="fade-up">
-        <div class="section-title">
-            <h2>Berita</h2>
-        </div>
-        <div class="flexslider basicslider" style="background-color: rgba(255, 197, 126, 0.9); color: #fff;  height: 300px; max-width: 100%; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);">
-            <ul class="slides">
-                <li>
-                    <article style="margin-top: 50px;">
-                        <p>Selamat Datang</p>
-                        <h3 class="heading">Laundry Prapen</h3>
-                        <p>Portal Berita Laundry Prapen</p>
-                        <footer><a class="btn" href="#">Beranda</a></footer>
-                    </article>
-                </li>
-                <li>
-                    <article style="margin-top: 50px;">
-                        <p>Selamat Datang</p>
-                        <h3 class="heading">Laundry Prapen</h3>
-                        <p>Portal Berita Laundry Prapen</p>
-                        <footer>
-                            <form id="whatsappForm" class="group" onsubmit="submitForm()">
-                                <fieldset>
-                                    <legend>Kritik & Saran:</legend>
-                                    <input id="whatsappMessage" type="text" value="" placeholder="Masukkan Saran ...">
-                                    <button class="fa fa-sign-in" type="submit" title="Submit"><em>Submit</em></button>
-                                </fieldset>
-                            </form>
-
-                            <script>
-                                function submitForm() {
-                                    var message = document.getElementById('whatsappMessage').value;
-                                    var phoneNumber = '+62895631218280';
-                                    var whatsappUrl = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
-                                    window.open(whatsappUrl, '_blank');
-
-                                    return false;
-                                }
-                            </script>
-
-                        </footer>
-                    </article>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="wrapper row3" style="margin-top: -200px;">
-        <main class="hoc container clear">
-            <!-- main body -->
-            <article class="group btmspace-80">
-    <?php
-    if (isset($_GET['id_berita'])) {
-        $id_berita = $_GET['id_berita'];
-        $query = "SELECT * FROM berita WHERE id_berita = '$id_berita'";
-        $result = mysqli_query($conn, $query);
-        $row = mysqli_fetch_assoc($result);
-    ?>
-        <div style="display: flex; flex-wrap: wrap;">
-            <div style="flex: 1 1 100%; max-width: 100%; text-align: center;">
-                <img class="borderedbox inspace-10" src="./admin/assets/img/<?php echo $row['foto']; ?>" style="width: 800px; height: 400px;" alt="img">
-            </div>
-            <div style="flex: 1 1 100%; max-width: 100%; text-align: center;">
-                <h6 class="heading" style="text-align: center;"><?php echo $row['judul_berita']; ?></h6>
-                <ul class="nospace meta">
-                    <li><i class="fa fa-user"></i> <a href="#"><?php echo $row['narasumber']; ?></a></li>
+                    </li>
                 </ul>
-                <p style="text-align: justify; margin: 0 20px;"><?php echo nl2br($row['isi_berita']); ?></p>
-                <footer class="nospace"><a class="btn" href="index.php">Kembali &raquo;</a></footer>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+        </div>
+    </header>
+    <br><br><br><br>
+
+    
+    <script>
+    $(document).ready(function(){
+        $(".berita-carousel").owlCarousel({
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        items: 2,   // Menampilkan 2 berita per tampilan
+        loop: true, // Membuat loop pada carousel
+        margin: 30, // Jarak antar elemen carousel
+        nav: true,  // Menampilkan navigasi
+        dots: true, // Menampilkan dots untuk navigasi
+        responsive: {
+            0: {
+            items: 1  // Pada layar kecil (mobile), hanya tampil 1 berita
+            },
+            600: {
+            items: 2  // Pada layar sedang, tampil 2 berita
+            }
+        }
+        });
+    });
+    </script>
+
+    <!-- Berita Section -->
+    <section id="berita" class="berita">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Berita</h2>
+            </div>
+
+            <!-- Slider berita -->
+            <div class="berita-carousel owl-carousel owl-theme">
+                <!-- Menampilkan berita dari database -->
+                <?php if ($result->num_rows > 0): ?>
+                    <?php while ($berita = $result->fetch_object()): ?>
+                        <div class="berita-box shadow p-4 bg-white rounded">
+                            <div>
+                                <img src="./admin/assets/img/<?php echo $berita->foto; ?>" style="width: 800px; height: 400px;" alt="img">
+                            </div>
+                            <div style="text-align: center">
+                                <h6 class="heading" style="text-align: center;"><?php echo $berita->judul_berita; ?></h6>
+                                <div class="meta">
+                                    <i class="fa fa-user"></i> <a href="#"><?php echo $berita->narasumber; ?></a>
+                                </div>
+                                <p style="text-align: justify; margin: 0 20px;"><?php echo nl2br($berita->isi_berita); ?></p>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                    <?php else: ?>
+                        <p style="text-align: center; color: #000000;">Belum ada berita yang tersedia.</p>
+                <?php endif; ?>
             </div>
         </div>
-    <?php
-    } else {
-        echo "<p>Tidak ada berita yang dipilih.</p>";
-    }
-    ?>
-</article>
+    </section>
 
-
-            <hr class="btmspace-80">
-
-            <?php
-            if (isset($_GET['id_berita'])) {
-                $id_berita_terpilih = $_GET['id_berita'];
-            } else {
-                $id_berita_terpilih = -1;
-            }
-
-            $query = "SELECT * FROM berita WHERE id_berita != '$id_berita_terpilih'";
-            $result = mysqli_query($conn, $query);
-
-            if (mysqli_num_rows($result) > 0) {
-            ?>
-                <ul class="nospace group overview">
-                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <li class="one_third">
-                            <article>
-                                <a href="#"><img src="./admin/assets/img/<?php echo $row['foto']; ?>" alt="" style="width: 320px; height: 240px;"></a>
-                                <h6 class="heading"><?php echo $row['judul_berita']; ?></h6>
-                                <ul class="nospace meta">
-                                    <li><i class="fa fa-user"></i> <a href="#"><?php echo $row['narasumber']; ?></a></li>
-                                </ul>
-                                <p><?php echo implode(' ', array_slice(explode(' ', $row['isi_berita']), 0, 10)); ?>...</p>
-                                <footer class="nospace"><a class="btn" href="artikel.php?id_berita=<?php echo $row['id_berita']; ?>">Baca Selengkapnya &raquo;</a></footer>
-                            </article>
-                        </li>
-                    <?php } ?>
-                </ul>
-            <?php
-            } else {
-                echo "<p>Tidak ada berita yang tersedia.</p>";
-            }
-            ?>
-            <div class="clear"></div>
-        </main>
-    </div>
-
-    <div class="wrapper row5">
-        <div id="copyright" class="hoc clear">
-            <p class="fl_left">Copyright &copy; 2024 - Laundry Prapen</p>
-            <p class="fl_right">Template by <a target="_blank" href="#" title="Free Website Templates">Laundry Prapen</a></p>
-        </div>
-    </div>
-    <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
-    <!-- JAVASCRIPTS -->
-    <script src="layout/scripts/jquery.min.js"></script>
-    <script src="layout/scripts/jquery.backtotop.js"></script>
-    <script src="layout/scripts/jquery.mobilemenu.js"></script>
-    <script src="layout/scripts/jquery.flexslider-min.js"></script>
+    <!-- JS Scripts -->
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

@@ -16,6 +16,26 @@
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
+
+    <style>
+    /* Style untuk gelombang */
+    .waves-container {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      bottom: 0;
+      z-index: -1;
+    }
+
+    .waves {
+      width: 100%;
+      height: auto;
+    }
+
+    #navbar .nav-link.active {
+      color: #DC6B19 !important;
+    }
+  </style>
 </head>
 
 <body>
